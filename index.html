@@ -17,7 +17,7 @@ body {
     margin-top: 120px;
 }
 
-input, select {
+input {
     padding: 10px;
     font-size: 16px;
     border-radius: 6px;
@@ -60,27 +60,14 @@ button {
 <!-- Question Section -->
 <div class="container" id="questionSection" style="display:none;">
     <h1 id="questionText"></h1>
-    <button id="yesBtn" onclick="showDate()">Yes 😍</button>
+    <button id="yesBtn" onclick="confirmDate()">Yes 😍</button>
     <button id="noBtn" onclick="sayPlease()" onmouseover="moveNo()">No 😜</button>
-</div>
-
-<!-- Date Section -->
-<div class="container" id="dateSection" style="display:none;">
-    <h1 id="dateHeading"></h1>
-    <p>Select our special date 💕</p>
-    <select id="dateSelect">
-        <option>Saturday, 7th February ❤️</option>
-        <option>Sunday, 8th February</option>
-        <option>Friday, 6th February</option>
-    </select>
-    <br><br>
-    <button onclick="final()">Confirm Date 💘</button>
 </div>
 
 <script>
 var girlName = "";
 
-// Start after name
+// After entering name
 function start() {
     girlName = document.getElementById("herName").value.trim();
 
@@ -93,35 +80,24 @@ function start() {
     document.getElementById("questionSection").style.display = "block";
 
     document.getElementById("questionText").innerHTML =
-        girlName + ", will you go on a date with me? 💖";
+        girlName + ", will you go on a date with me on 7th March? ❤️";
 }
 
 // When she clicks YES
-function showDate() {
-    document.getElementById("questionSection").style.display = "none";
-    document.getElementById("dateSection").style.display = "block";
-
-    document.getElementById("dateHeading").innerHTML =
-        "Yay ❤️ " + girlName + ", choose our special date 💕";
-}
-
-// Final confirmation
-function final() {
-    var selectedDate = document.getElementById("dateSelect").value;
-
+function confirmDate() {
     document.body.innerHTML =
         "<h1 style='margin-top:150px;'>❤️ It's a Date ❤️<br><br>" +
-        girlName + ", see you on 7th March<b>"
-        "</b> 😘</h1>";
+        girlName +
+        ", see you on <br><br><b>7th March ❤️</b> 😘</h1>";
 }
 
-// When she tries NO
+// When she clicks NO
 function sayPlease() {
     document.getElementById("questionText").innerHTML =
         girlName + ", please say Yes 🥺❤️";
 }
 
-// Make NO button run away
+// Move NO button
 function moveNo() {
     var btn = document.getElementById("noBtn");
 
@@ -135,5 +111,3 @@ function moveNo() {
 
 </body>
 </html>
-
-
