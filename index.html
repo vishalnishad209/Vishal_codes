@@ -125,8 +125,18 @@ function changeText() {
     document.getElementById("questionText").innerHTML =
         girlName + ", please say Yes 🥺❤️";
 }
+    var music = document.getElementById("bgMusic");
+
+document.addEventListener("click", function() {
+    if (music.paused) {
+        music.play();
+    }
+});
+
+music.loop = true;
 </script>
 
 </body>
 </html>
+
 
