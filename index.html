@@ -2,26 +2,25 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Special Surprise ❤️</title>
+<title>For Someone Special ❤️</title>
 
 <style>
 body {
+    margin: 0;
     text-align: center;
     font-family: Arial, sans-serif;
     background: linear-gradient(135deg, #ff758c, #ff7eb3);
-    height: 100vh;
-    overflow: hidden;
     color: white;
 }
 
 .container {
-    margin-top: 100px;
+    margin-top: 120px;
 }
 
 input, select {
     padding: 10px;
     font-size: 16px;
-    border-radius: 5px;
+    border-radius: 6px;
     border: none;
 }
 
@@ -49,26 +48,25 @@ button {
 
 <body>
 
-<!-- Music -->
-<audio id="bgMusic" loop>
-    <source src="music.mp3" type="audio/mpeg">
-</audio>
+<!-- Name Section -->
 <div class="container" id="nameSection">
     <h1>Hey Beautiful 💖</h1>
     <p>Enter your name first 😊</p>
     <input type="text" id="herName" placeholder="Your Name">
     <br><br>
-    <button onclick="startQuestion()">Continue 💌</button>
+    <button onclick="start()">Continue 💌</button>
 </div>
 
+<!-- Question Section -->
 <div class="container" id="questionSection" style="display:none;">
     <h1 id="questionText"></h1>
-    <button id="yesBtn" onclick="showDateSection()">Yes 😍</button>
-    <button id="noBtn" onclick="changeText()" onmouseover="moveButton()">No 😜</button>
+    <button id="yesBtn" onclick="showDate()">Yes 😍</button>
+    <button id="noBtn" onclick="sayPlease()" onmouseover="moveNo()">No 😜</button>
 </div>
 
+<!-- Date Section -->
 <div class="container" id="dateSection" style="display:none;">
-    <h1 id="dateText"></h1>
+    <h1 id="dateHeading"></h1>
     <p>Select our special date 💕</p>
     <select id="dateSelect">
         <option>Saturday, 7th February ❤️</option>
@@ -76,67 +74,65 @@ button {
         <option>Friday, 6th February</option>
     </select>
     <br><br>
-    <button onclick="finalMessage()">Confirm Date 💘</button>
+    <button onclick="final()">Confirm Date 💘</button>
 </div>
 
 <script>
 var girlName = "";
 
-function startQuestion() {
-    girlName = document.getElementById("herName").value;
+// Start after name
+function start() {
+    girlName = document.getElementById("herName").value.trim();
 
-    if(girlName === "") {
+    if (girlName === "") {
         alert("Please enter your name 😊");
         return;
     }
 
     document.getElementById("nameSection").style.display = "none";
     document.getElementById("questionSection").style.display = "block";
+
     document.getElementById("questionText").innerHTML =
         girlName + ", will you go on a date with me? 💖";
 }
 
-function showDateSection() {
+// When she clicks YES
+function showDate() {
     document.getElementById("questionSection").style.display = "none";
     document.getElementById("dateSection").style.display = "block";
-    document.getElementById("dateText").innerHTML =
-        "Yayyy ❤️ " + girlName + ", choose our special date 💕";
+
+    document.getElementById("dateHeading").innerHTML =
+        "Yay ❤️ " + girlName + ", choose our special date 💕";
 }
 
-function finalMessage() {
+// Final confirmation
+function final() {
     var selectedDate = document.getElementById("dateSelect").value;
 
     document.body.innerHTML =
-    "<h1 style='margin-top:150px;'>❤️ It's a Date ❤️<br><br>" +
-    girlName + ", see you on <br><br><b>" +
-    selectedDate +
-    "</b> 😘💍</h1>";
+        "<h1 style='margin-top:150px;'>❤️ It's a Date ❤️<br><br>" +
+        girlName + ", see you on <br><br><b>" +
+        selectedDate +
+        "</b> 😘</h1>";
 }
 
-function moveButton() {
-    var button = document.getElementById("noBtn");
-    var x = Math.random() * (window.innerWidth - 100);
-    var y = Math.random() * (window.innerHeight - 50);
-    button.style.left = x + "px";
-    button.style.top = y + "px";
-}
-
-function changeText() {
+// When she tries NO
+function sayPlease() {
     document.getElementById("questionText").innerHTML =
         girlName + ", please say Yes 🥺❤️";
 }
-    var music = document.getElementById("bgMusic");
 
-document.addEventListener("click", function() {
-    if (music.paused) {
-        music.play();
-    }
-});
+// Make NO button run away
+function moveNo() {
+    var btn = document.getElementById("noBtn");
 
-music.loop = true;
+    var x = Math.random() * (window.innerWidth - 100);
+    var y = Math.random() * (window.innerHeight - 50);
+
+    btn.style.left = x + "px";
+    btn.style.top = y + "px";
+}
 </script>
 
 </body>
 </html>
-
-
